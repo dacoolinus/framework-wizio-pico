@@ -434,7 +434,7 @@ static inline void busy_wait_at_least_cycles(uint32_t minimum_cycles) {
  * \return The core number the call was made from
  */
 __force_inline static uint get_core_num(void) {
-    return (*(uint32_t *) (SIO_BASE + SIO_CPUID_OFFSET));
+     return (*(uint32_t *) (SIO_BASE + SIO_CPUID_OFFSET));
 }
 
 #else // __ASSEMBLER__

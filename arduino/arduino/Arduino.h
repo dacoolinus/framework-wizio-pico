@@ -68,6 +68,8 @@ extern "C"
 #include "WCharacter.h"
 #include "WString.h"
 
+
+
 /* WMath */
 long random(long);
 long random(long howsmall, long howbig);

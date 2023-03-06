@@ -177,6 +177,31 @@ public:
         return t.val;
     }
 
+        uint16_t transfer16(uint16_t data)
+    {
+        union
+        {
+            uint16_t val;
+            struct
+            {
+                uint8_t lsb;
+                uint8_t msb;
+            };
+        } t;
+        t.val = data;
+        if (_bit_order == LSBFIRST)
+        {
+            t.lsb = transfer(t.lsb);
+            t.msb = transfer(t.msb);
+        }
+        else
+        {
+            t.msb = transfer(t.msb);
+            t.lsb = transfer(t.lsb);
+        }
+        return t.val;
+    }
+
     int transfer(uint8_t *buf, size_t count)
     {
         return spi_write_read_blocking(spi, buf, buf, count); // MSB

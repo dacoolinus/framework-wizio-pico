@@ -200,7 +200,8 @@ _entry_point:
 #else
     // Debugger tried to run code after loading, so SSI is in 03h-only mode.
     // Go back through bootrom + boot2 to properly initialise flash.
-    movs r0, #0
+
+//    movs r0, #0
 #endif
     ldr r1, =(PPB_BASE + M0PLUS_VTOR_OFFSET)
     str r0, [r1]

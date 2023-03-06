@@ -44,11 +44,11 @@ extern "C"
     bool set_now(time_t T);    
 
     /* ARDUINO LIKE visible from <time.h> */
-    unsigned int micros(void);
-    unsigned int millis(void);
-    unsigned int seconds(void);
-    void delay(unsigned int ms);
-    void delayMicroseconds(unsigned int us);
+    uint32_t micros(void);
+    uint32_t millis(void);
+    uint32_t seconds(void);
+    void delay(uint32_t ms);
+    void delayMicroseconds(uint32_t us);
 
 #ifdef __cplusplus
 }

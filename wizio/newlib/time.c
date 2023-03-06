@@ -146,27 +146,27 @@ unsigned int sleep(unsigned int seconds)
 
 /* ARDUINO LIKE visible from <time.h> */
 
-unsigned int micros(void)
+uint32_t micros(void)
 {
     return to_us_since_boot(get_absolute_time());
 }
 
-unsigned int millis(void)
+uint32_t millis(void)
 {
     return to_ms_since_boot(get_absolute_time());
 }
 
-unsigned int seconds(void)
+uint32_t seconds(void)
 {
     return millis() / 1000;
 }
 
-__inline void delayMicroseconds(unsigned int us)
+__inline void delayMicroseconds(uint32_t us)
 {
     sleep_us(us);
 };
 
-__inline void delay(unsigned int ms)
+__inline void delay(uint32_t ms)
 {
 #ifdef USE_FREERTOS
     vTaskDelay(pdMS_TO_TICKS(ms));

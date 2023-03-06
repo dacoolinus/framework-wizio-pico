@@ -248,3 +248,6 @@ void system_init(void)
     dap_init();
 #endif
 }
+
+
+void _fini(){}

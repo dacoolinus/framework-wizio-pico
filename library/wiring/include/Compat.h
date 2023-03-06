@@ -13,4 +13,8 @@ inline void digitalWrite(pin_size_t pinNumber, int status) {
 
 }
 
+inline pin_size_t digitalPinToInterrupt(pin_size_t interruptPin){
+    return interruptPin;
+};
+
 #endif

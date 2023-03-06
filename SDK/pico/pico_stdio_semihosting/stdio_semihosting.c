@@ -29,10 +29,32 @@ static void __attribute__((naked)) semihosting_putc(__unused const char *c) {
 }
 
 
+//static void stdio_semihosting_out_chars(const char *buf, int length) {
+//    for (int i = 0; i < length; i++) {
+//        semihosting_putc(&buf[i]);
+//    }
+//}
+
+struct putbuf_state {
+    size_t fd;
+    const char *buf;
+    size_t len;
+};
+
 static void stdio_semihosting_out_chars(const char *buf, int length) {
-    for (int i = 0; i < length; i++) {
-        semihosting_putc(&buf[i]);
-    }
+    static struct putbuf_state state;
+    state.fd = 1;
+    state.buf = buf;
+    state.len = length;
+
+    __asm (
+        "mov r1, %[state]\n"
+        "mov r0, #5\n"
+        "bkpt 0xab\n"
+        "bx lr\n"
+        :
+        : [state] "r" (&state)
+    );
 }
 
 stdio_driver_t stdio_semihosting = {
